@@ -22,6 +22,16 @@ while i < y + 1:
       j= j + 1
    i = i + 1
 
+i = 0
+while i < len(yx):
+   yx[i].append("a1")
+   i = i + 1
+
+yx.append(yx[0])
+
+
+
+
 """
 Now we have a 2d map we can iterate through using y and x coordinates respectively like yx[y][x]
 This map is comprised of a border of A values across the top and down the left. This makes it so
@@ -102,17 +112,23 @@ Steps:
 def inter(t,l,c)
 make intersection list between outp[("t",t)] and outp[("l",l)]
 iterate through rot[c] and see if any element is in intersection list
-if so, then change value at coordinate of c to that rotation, otherwise the pipe system is impossible 
+If so, then return that element.
 """
 
 #def inter(t, l, c):
 #   z = 0
 #   intersection = []
-#   while z < 0:
-#      if outp[("t", t)]][z] in outp[("l", l):
-#      lint.append(outp[("t", t)])
+#   while z < len(outp[("t", t)]):
+#      if outp[("t", t)][z] in outp[("l", l):
+#         intersection.append(outp[("t", t)])
 #      z = z + 1
-#^^^^^Unfinished function ^^^^^^^^
+#   z = 0
+#   while z < len(rot[c]):
+#      if rot[c][z] in intersection:
+#         return rot[c][z]
+#      z = z + 1
+   
+
 
 """
 Then we must iterate through our matrix starting at yx[1][1] and run the function for each coordinate
