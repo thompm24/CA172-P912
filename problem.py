@@ -127,15 +127,10 @@ If so, then return that element.
 #      if rot[c][z] in intersection:
 #         return rot[c][z]
 #      z = z + 1
-   
-
+#^^Function from note above, but with a syntax error somewhere^^
 
 """
-Then we must iterate through our matrix starting at yx[1][1] and run the function for each coordinate
-
-We must then also make the test to make sure that all items across bottom and right of map are no positive top or positive left.
-Otherwise instead of running test we could also make it so that instead of As just running across top  and bottom of grid, 
-we make a frame of As.
+Then we must iterate through our matrix starting at yx[1][1] and run the function for each coordinate.
 """
 
 
