@@ -9,13 +9,13 @@ yx = [[]]
 
 i = 0
 while i < x + 1:
-   yx[0].append("A")
+   yx[0].append("a1")
    i = i + 1
 
 i = 1
 while i < y + 1:
    s = input()
-   yx.append(["A"])
+   yx.append(["a1"])
    j = 0
    while j < x:
       yx[i].append(s[j])
@@ -30,20 +30,6 @@ rules as every other tile
 """
 
 
-d = {}
-i = 0
-while i < len(yx):
-   j = 0
-   while j < len(yx[0]):
-      d[(0, j)] = "a1"
-      j = j + 1
-   d[(i, 0)] = "a1"
-   i = i + 1
-
-"""
-All of the A values we put in at border are now defined in dictionary as a1, as {(0,0):"a1"}
-"""
-
 i = 0
 while i < len(yx):
    print(yx[i])
@@ -52,26 +38,93 @@ while i < len(yx):
 
 
 """
-List of possible relations which will not work:
-Negative:
-No connection from right:
-a1, b1, c3, c4
-Try connect to their left:
-B2, c3, c4, d1
+[a1,b2,c1,c4] on top  == [a1,b2,c2,c3] on bottom  |negative top |
+[b1,c2,c3,d1] on top  == [b1,c1,c4,d1] on bottom  |positive top |
 
-No connection downwards:
-A1, b2, c1, c4
-Try connect upwards:
-B1, c1, c4, d1
+[a1,b1,c3,c4] on left == [a1,b1,c2,c4] on right   |negative left|
+[b2,c1,c2,d1] on left == [b2,c3,c4,d1] on right   |positive left|
 
-Positive:
-Try connect right:
-B2, c1, c2, d1
-Wont connect left:
-A1, b1,  c1, c2
+Notice that if we take an intersection of either one of the 2 sets for the top and left values,
+there is only a max of one possible rotation for any ABCD cell.
 
-Try  connect down:
-B1, c2, c3, d1
-Wont connect up:
-A1, b2, c2, c3
+Consider the following:
+[positive top] ∩ [negative left] = [b2,c3]
+
+Therefore, if we have a tile B beneath a positive top, say, c1, and to the right of a negative
+left, say, c2, then the only possible rotation of B is b2. However, if the B was instead a D,
+
+
+The only problem now is that on the far right or far bottom borders, we can not have a positive
+left or positive top respectively. This can be solved with an if statement though.
 """
+
+#negative top input etc.
+nti = ["a1","b2","c1","c4"]
+pti = ["b1","c2","c3","d1"]
+nli = ["a1","b1","c3","c4"]
+pli = ["b2","c1","c2","d1"]
+
+#negative top output etc.
+nto = ["a1","b2","c2","c3"]
+pto = ["b1","c1","c4","d1"]
+nlo = ["a1","b1","c2","c4"]
+plo = ["b2","c3","c4","d1"]
+
+outp = {}
+i = 0
+while i < 4:
+   outp[("t", nti[i])] = nto
+   outp[("t", pti[i])] = pto
+   outp[("l", nli[i])] = nlo
+   outp[("l", pli[i])] = plo
+   i = i + 1
+
+#We use ("t", "a1") to keep a1's corresponding tiles separate in dictionary based on if it's on top or on left
+
+
+print(outp)
+rot = {}
+rot["A"] = ["a1"]
+rot["B"] = ["b1", "b2"]
+rot["C"] = ["c1","c2","c3","c4"]
+rot["D"] = ["d1"]
+#all possible rotations of each pipe type that we can check for intersection with output lists we made above
+
+
+
+
+"""
+We must make a list that will take in a top and left value (already written in a1 form), and check their intersecting pipe types.
+We can do this by iterating through one dictionary definition list , and then using an if x in y statement
+Then we must see if any element of rotation list is in that intersection
+
+Steps:
+def inter(t,l,c)
+make intersection list between outp[("t",t)] and outp[("l",l)]
+iterate through rot[c] and see if any element is in intersection list
+if so, then change value at coordinate of c to that rotation, otherwise the pipe system is impossible 
+"""
+
+#def inter(t, l, c):
+#   z = 0
+#   intersection = []
+#   while z < 0:
+#      if outp[("t", t)]][z] in outp[("l", l):
+#      lint.append(outp[("t", t)])
+#      z = z + 1
+#^^^^^Unfinished function ^^^^^^^^
+
+"""
+Then we must iterate through our matrix starting at yx[1][1] and run the function for each coordinate
+
+We must then also make the test to make sure that all items across bottom and right of map are no positive top or positive left.
+Otherwise instead of running test we could also make it so that instead of As just running across top  and bottom of grid, 
+we make a frame of As.
+"""
+
+
+"""
+Finitooooo
+"""
+
+
