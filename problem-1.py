@@ -117,25 +117,34 @@ iterate through rot[c] and see if any element is in intersection list
 If so, then return that element.
 """
 
-#def inter(t, l, c):
-#   z = 0
-#   intersection = []
-#   while z < len(outp[("t", t)]):
-#      if outp[("t", t)][z] in outp[("l", l):
-#         intersection.append(outp[("t", t)])
-#      z = z + 1
-#   z = 0
-#   while z < len(rot[c]):
-#      if rot[c][z] in intersection:
-#         return rot[c][z]
-#      z = z + 1
-#^^Function from note above, but with a syntax error somewhere^^
+def inter(t, l, c):
+   z = 0
+   intersection = []
+   while z < len(outp[("t", t)]):
+      if outp[("t", t)][z] in outp[("l", l)]:
+         intersection.append(outp[("t", t)][z])
+      z = z + 1
+   z = 0
+   while z < len(rot[c]):
+      if rot[c][z] in intersection:
+         return rot[c][z]
+      z = z + 1
+
+print(inter(yx[0][1], yx[1][0], yx[1][1]))
 
 """
 Then we must iterate through our matrix starting at yx[1][1] and run the function for each coordinate.
 """
 
-
+#i = 1
+#while i < len(yx):
+#   j = 1
+#   while j < len(yx[0]):
+#      print(yx[i][j], (i,j))
+#      yx[i][j] = inter(yx[i - 1][j], yx[i][j - 1], yx[i][j])
+#      print(yx[i][j], (i,j))
+#      j = j + 1
+#   i = i + 1
 """
 Finitooooo
 """
